@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  height: 100vh;
+  background: url('flowers.jpg') no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Контейнер для карточек */
+.container {
+  display: flex;
+  gap: 20px;
+  z-index: 2;
+}
+
+/* Обычные карточки */
+.card {
+  width: 120px;
+  height: 120px;
+  background-color: #ff4d6d; /* клубничный цвет */
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+/* Сердечко */
+.heart-card {
+  position: relative;
+  width: 150px;
+  height: 135px;
+  background-color: #ff4d6d;
+  transform: rotate(-45deg);
+  border-radius: 50% 50% 0 0;
+  animation: pulse 1.2s infinite ease-in-out;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Верхние полукруги сердца */
+.heart-card::before,
+.heart-card::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 135px;
+  background: #ff4d6d;
+  border-radius: 50%;
+}
+
+.heart-card::before {
+  top: 0;
+  left: 75px;
+}
+
+.heart-card::after {
+  top: 75px;
+  left: 0;
+}
+
+/* Текст внутри сердца */
+.heart-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  color: #fff;
+  font-size: 1.8em;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,100,150,0.6);
+  z-index: 10;
+}
+
+/* Анимация пульсации сердца */
+@keyframes pulse {
+  0%, 100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.15);
+  }
+}
+
+/* Падающие цветы */
+@keyframes fall {
+  0% {
+    transform: translateY(-10%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.falling-flowers::before,
+.falling-flowers::after {
+  content: "💐💮🌸🌷🌺";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  font-size: 2rem;
+  animation: fall 10s linear infinite;
+  z-index: 1;
+}
+
+.falling-flowers::after {
+  left: 30%;
+  animation-delay: 3s;
+}
